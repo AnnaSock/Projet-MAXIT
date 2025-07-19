@@ -7,15 +7,16 @@ class Compte extends AbstractEntity{
         private float $solde;
         private string $numero;
         private string $date;
-        private  ?TypeCompte $typeCompte=null;
+        private  ?TypeCompte $typeCompte;
         private Utilisateur $utilisateur;
         private array $transactions=[];
 
-        public function __construct($id=0, $solde=0, $numero='', $date=''){
+        public function __construct($id=0, $solde=0, $numero='', $date='', ?TypeCompte $typeCompte=null){
                 $this->id=$id;
                 $this->solde=$solde;
                 $this->numero=$numero;
                 $this->date=$date;
+                $this->typeCompte=$typeCompte ;
                 $this->utilisateur= new Utilisateur();
         }
 
@@ -36,17 +37,14 @@ class Compte extends AbstractEntity{
                  $compte->setSolde($data['solde'] ?? 0); 
                  $compte->setNumero($data['numero'] ?? '');
                  $compte->setDate($data['date'] ?? ''); 
-                //  $compte->setTypeCompte(TypeCompte::from($data['typeCompte']) ?? ''); 
-                $compte->setTypeCompte($data['typeCompte'] ?? '');
+                 $compte->setTypeCompte(TypeCompte::from($data['typeCompte'])); 
+                // $compte->setTypeCompte($data['typeCompte'] ?? '');
                  $utilisateur=new Utilisateur();
                  $utilisateur->setId($data['utilisateur_id'] ?? 0);
                  $compte->setUtilisateur($utilisateur);
 
                  return $compte;
          }
-
-        
-        
 
         /**
          * Get the value of id
@@ -163,7 +161,7 @@ class Compte extends AbstractEntity{
         /**
          * Get the value of typeCompte
          */ 
-        public function getTypeCompte()
+        public function getTypeCompte(): TypeCompte
         {
                 return $this->typeCompte;
         }

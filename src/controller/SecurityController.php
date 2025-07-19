@@ -80,6 +80,8 @@ class SecurityController extends AbstractController{
             
         }
         public function store(){
+
+            $this->renderHtml('succes');
             
         }
 

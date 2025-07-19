@@ -1,0 +1,9 @@
+#!/usr/bin/env php  
+
+<?php
+
+use App\Core\App;
+
+$pdo=App::getDependencies('database')
+
+?>

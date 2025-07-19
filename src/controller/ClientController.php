@@ -5,9 +5,9 @@ namespace Src\Controller;
 
 use App\Core\Abstracts\AbstractController;
 use App\Core\App;
-use Src\Entity\Compte;
+use Src\Entity\TypeCompte;
+use Src\Entity\Utilisateur;
 use Src\Service\CompteService ;
-use Symfony\Component\Yaml\Yaml;
 
 use function App\Config\dd;
 
@@ -17,16 +17,26 @@ class ClientController extends AbstractController{
          private CompteService $compteService;
 
          public function __construct(){
+               $this->compteService=App::getDependencies('compteService');
                parent::__construct();
-               $this->compteService= CompteService::getInstance();
          }
          public function index(){
-            
-                        $utilisateur= $this->session->get('utilisateur');
-                        $id=$utilisateur['id'];
-                        $solde=$this->compteService->afficherSolde($id);
-                        dd($solde);
-                        $this->renderHtml('dashboard');
+                        $utilisateur=$this->session->get('utilisateur');
+                        $user=Utilisateur::toObject($utilisateur);
+                        $listCompte=$this->compteService->getCompteByUser($user);
+                       
+                        $comptePrincipal=array_filter( $listCompte,fn($compte)=>  $compte->getTypeCompte()->value === TypeCompte::PRINCIPAL->value);
+                        $comptePrincipal=array_map(fn($compte)=> $compte->toArray(), $comptePrincipal);
+                        // dd($comptePrincipal);
+                        $compteSecondaire=array_filter( $listCompte,fn($compte)=>  $compte->getTypeCompte()->value === TypeCompte::SECONDAIRE->value);
+                        $compteSecondaire=array_map(fn($compte)=> $compte->toArray(), $compteSecondaire);
+                        // dd($compteSecondaire);
+                        
+                        $this->renderHtml('dashboard', [
+                                    'principal'=> $comptePrincipal,
+                                    'secondaires'=> $compteSecondaire,
+                                    'user'=> $user
+                        ]);
          }
          public function create(){
 

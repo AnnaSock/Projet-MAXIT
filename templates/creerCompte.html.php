@@ -20,7 +20,7 @@
         </div>
 
         <!-- Form -->
-        <form action="/accesCompte" class="space-y-6">
+        <form action="/account/save" class="space-y-6">
             <!-- First row -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -68,9 +68,9 @@
                 <label class="block text-gray-700 text-sm font-semibold mb-4">Photo CNI</label>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <!-- RECTO -->
-                    <div class="upload-area rounded-lg p-6 text-center transition-all duration-300 cursor-pointer group">
+                    <div class="upload-area rounded-lg p-6 text-center transition-all duration-300 cursor-pointer group border border-gray-500">
                         <div class="mb-3">
-                            <div class="w-16 h-16 orange-gradient rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                            <div class=" border border-[#FC7700] w-16 h-16 orange-gradient rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                                 <svg class="w-8 h-8 text-[#FC7700]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/>
                                 </svg>
@@ -81,9 +81,9 @@
                     </div>
 
                     <!-- VERSO -->
-                    <div class="upload-area rounded-lg p-6 text-center transition-all duration-300 cursor-pointer group">
+                    <div class="upload-area rounded-lg p-6 text-center transition-all duration-300 cursor-pointer group border border-gray-500">
                         <div class="mb-3">
-                            <div class="w-16 h-16 orange-gradient rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                            <div class="border border-[#FC7700] w-16 h-16 orange-gradient rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                                 <svg class="w-8 h-8 text-[#FC7700]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/>
                                 </svg>
@@ -97,8 +97,8 @@
 
             <!-- Submit button -->
             <div class="flex justify-center pt-4">
-                <button type="button" 
-                        class="orange-gradient text-[#FC7700] font-bold py-3 px-12 rounded-lg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-orange-300 shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95">
+                <button type="submit" 
+                        class="border border-gray-500 orange-gradient text-[#FC7700] font-bold py-3 px-12 rounded-lg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-orange-300 shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95">
                     VALIDER
                 </button>
             </div>
@@ -108,7 +108,7 @@
         <div class="text-center mt-6">
             <p class="text-gray-600 text-sm">
                 Vous avez déjà un compte ? 
-                <a href="#" class="font-semibold hover:underline" style="color: #FC7700;">Se connecter</a>
+                <a href="/login" class="font-semibold hover:underline" style="color: #FC7700;">Se connecter</a>
             </p>
         </div>
     </div>

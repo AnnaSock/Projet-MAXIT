@@ -40,4 +40,17 @@ class UtilisateurRepository extends AbstractRepository{
            return null;
       }
 
+       public function selectAll(){
+     
+    }
+        public function insert($entity){
+          
+        }
+        public function update($entity){
+          
+        }
+        public function delete(){
+          
+        }
+
 }

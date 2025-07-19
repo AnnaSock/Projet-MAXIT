@@ -10,4 +10,4 @@ repository:
             
 service:
         securityService: Src\Service\SecurityService
-            
+        compteService: Src\Service\CompteService     

@@ -1,14 +1,17 @@
 <?php
 namespace Src\Service;
+
+use App\Core\App;
+use Src\Entity\Utilisateur;
 use Src\Repository\CompteRepository;
 
 class CompteService{
 
-    private CompteRepository $compteRepository;
+        private CompteRepository $compteRepository;
         private static ?CompteService $instance=null;
 
         private function __construct(){
-                $this->compteRepository=CompteRepository::getInstance();
+                $this->compteRepository=App::getDependencies('compteRepository');
         }
 
 
@@ -18,27 +21,9 @@ class CompteService{
               }
               return self::$instance;
         }
-
-
-        // public function afficherSolde($id): float|null{
-        //             $compte= $this->compteRepository->FindById($id);
-        //             if($compte){
-        //                 $solde = $compte->getSolde();
-        //                 return $solde;
-        //             }
-        //             return null;
-        // }
-
-        public function afficherSolde(int $id): ?float
+        public function getCompteByUser(Utilisateur $user)
 {
-    $compte = $this->compteRepository->findById($id);
+        return $this->compteRepository->FindByUser($user);
 
-    if (!$compte) {
-        return null;
-    }
-
-    $solde = $compte->getSolde();
-
-    return is_float($solde) ? $solde : null; // sécurité optionnelle
 }
 }

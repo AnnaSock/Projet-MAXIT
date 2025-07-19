@@ -2,7 +2,7 @@
         <div class="flex w-[18%] bg-gradient-to-b from-[#FF7900] to-[#FF6B00] flex-col shadow-2xl border-r-2 border-orange-300/30">
             <div class="bg-white rounded-2xl mt-8 mx-auto p-6 shadow-xl ring-2 ring-orange-300">
                 <h1 class="text-[#FF7900] text-3xl font-bold text-center">Max it</h1>
-                <div class="text-gray-700 text-xl font-semibold text-center mt-2">SN</div>
+                <div class="text-gray-700 text-xl font-semibold text-center mt-2">ECSA</div>
             </div>
             
             <div class="w-[90%] h-[90%] mx-auto mt-8">
@@ -41,8 +41,15 @@
                 
                 <div class="flex items-center ml-auto space-x-4">
                     <div class="h-[45px] px-6 rounded-full bg-gradient-to-r from-[#FF8C00] to-[#FF7900] flex items-center shadow-lg hover:shadow-xl transition-all hover:from-[#FF9500] hover:to-[#FF8C00]">
-                        <p class="text-white font-semibold text-lg">Client</p>
-                    </div>
+           
+           
+                    <p class="text-white font-semibold text-lg">
+                        <?= htmlspecialchars($user->getPrenom() . ' ' . $user->getNom()) ?>
+                   </p>
+
+
+</div>
+
                     
                     <div class="h-[50px] w-[50px] bg-gradient-to-r from-[#FF7900] to-[#FF8C00] rounded-full flex items-center justify-center hover:bg-orange-600 transition-colors cursor-pointer shadow-md">
                         <i class="fa-solid fa-user text-xl text-white"></i>
@@ -58,7 +65,21 @@
                                 <h3 class="text-gray-600 text-lg font-semibold">Solde Total</h3>
                                 <i class="fa-solid fa-wallet text-2xl text-[#FF7900]"></i>
                             </div>
-                            <p class="text-3xl font-bold text-gray-800">125,450 FCFA</p>
+
+
+                           <?php if (!empty($principal)) : ?>
+                            <p class="text-3xl font-bold text-gray-800">
+                                <?= number_format($principal[0]['solde'], 0, ',', ' ') ?> FCFA
+                            </p>
+                            <p class="text-sm text-gray-500 mt-1">
+                                Numéro : <?= htmlspecialchars($principal[0]['numero']) ?>
+                            </p>
+                            <?php else : ?>
+                                <p class="text-3xl font-bold text-gray-800">Aucun compte principal</p>
+                            <?php endif; ?>
+
+
+
                             <p class="text-sm text-green-600 mt-2">
                                 <i class="fa-solid fa-arrow-up"></i> +2.5% ce mois
                             </p>
@@ -74,13 +95,33 @@
                         </div>
                         
                         <div class="bg-white rounded-xl shadow-md p-6 border border-orange-100 hover:shadow-xl transition-shadow">
-                            <div class="flex items-center justify-between mb-4">
-                                <h3 class="text-gray-600 text-lg font-semibold">Comptes Actifs</h3>
-                                <i class="fa-solid fa-users text-2xl text-[#FF7900]"></i>
-                            </div>
-                            <p class="text-3xl font-bold text-gray-800">3</p>
-                            <p class="text-sm text-gray-500 mt-2">2 particuliers, 1 business</p>
-                        </div>
+    <div class="flex items-center justify-between mb-4">
+        <h3 class="text-gray-600 text-lg font-semibold">Compte Actif</h3>
+        <i class="fa-solid fa-users text-2xl text-[#FF7900]"></i>
+    </div>
+
+
+                    <?php if (!empty($principal)) : ?>
+                        <p class="text-3xl font-bold text-gray-800">1</p>
+                        <p class="text-sm text-gray-500 mt-2">Type : Principal</p>
+
+                        <?php if (!empty($secondaires)) : ?>
+                            <p class="text-sm text-gray-500 mt-1">
+                                Secondaire<?= count($secondaires) > 1 ? 's' : '' ?> : <?= count($secondaires) ?>
+                            </p>
+                        <?php endif; ?>
+
+                    <?php elseif (!empty($secondaires)) : ?>
+                        <p class="text-3xl font-bold text-gray-800">1</p>
+                        <p class="text-sm text-gray-500 mt-2">Type : Secondaire</p>
+                    <?php else : ?>
+                        <p class="text-3xl font-bold text-gray-800">0</p>
+                        <p class="text-sm text-gray-500 mt-2">Aucun compte actif</p>
+                    <?php endif; ?>
+
+
+    </div>
+
                     </div>
                     
                     <div class="mt-8 bg-white rounded-xl shadow-md p-6 border border-orange-100">
