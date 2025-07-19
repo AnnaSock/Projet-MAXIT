@@ -5,7 +5,7 @@ INSERT INTO profil (nom_profil) VALUES
 
 INSERT INTO utilisateurs (nom, prenom, adresse, numero, motDePasse, numeroCni, photoRecto, photoVerso, profil_id)
 VALUES
-('SocK', 'Anna', 'Dakar, Sénégal', 770000001, 'passer123', 123456789, 'photo_recto1.jpg', 'photo_verso1.jpg', 1), 
+('Sock', 'Anna', 'Dakar, Sénégal', 770000001, 'passer123', 123456789, 'photo_recto1.jpg', 'photo_verso1.jpg', 1), 
 ('Wane', 'Baila', 'Thies, Sénégal', 770000002, 'pass456', 987654321, 'photo_recto2.jpg', 'photo_verso2.jpg', 2);  
 
 

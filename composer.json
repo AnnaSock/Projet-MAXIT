@@ -27,7 +27,8 @@
     },
 
     "bin":[
-            "bin/migrate"  
+            "bin/migrate",
+            "bin/seed"  
     ],
 
     "authors": [
