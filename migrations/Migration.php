@@ -6,6 +6,7 @@ use Exception;
 use \PDO;
 
 class Migration{
+    
         
     private PDO $pdo;
     private string $driver;
@@ -26,8 +27,8 @@ class Migration{
 
     private function createDatabase(){
                 if($this->driver=== "mysql"){
-                    $this->pdo->exec("CREATE DATABASE IF NOT EXIT " . NAME);
-                    $this->pdo->exec("USE " . NAME);
+                    $this->pdo->exec("CREATE DATABASE IF NOT EXISTS " . DB_NAME);
+                    $this->pdo->exec("USE " . DB_NAME);
                 }
     }
 

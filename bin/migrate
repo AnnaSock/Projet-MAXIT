@@ -1,9 +1,12 @@
 #!/usr/bin/env php  
 
 <?php
+require_once __DIR__ . "/../vendor/autoload.php";
+require_once __DIR__ . "/../app/config/env.php";
+use Migrations\Migration;
 
-use App\Core\App;
+$pdo= new PDO(BASE_DSN_MYSQL, DB_USER_MYSQL, DB_PASS_MYSQL);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$migration= new Migration($pdo);
+$migration->run();
 
-$pdo=App::getDependencies('database')
-
-?>

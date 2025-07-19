@@ -10,7 +10,8 @@
             "App\\Core\\": "app/core/",
             "App\\Core\\Abstracts\\": "app/core/abstracts/",
             "App\\Core\\Middlewares\\": "app/core/middlewares/",
-            "Migrations\\": "migrations/"
+            "Migrations\\": "migrations/",
+            "Seeders\\": "seeders/"
 
         },
 
@@ -18,6 +19,17 @@
                 "app/config/helpers.php"    
         ]
     },
+
+    "scripts": {
+            "database:migrate": "@php bin/migrate",
+            "database:seed": "@php bin/seed"
+
+    },
+
+    "bin":[
+            "bin/migrate"  
+    ],
+
     "authors": [
         {
             "name": "AnnaSock",
