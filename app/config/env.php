@@ -12,6 +12,7 @@ define('BASE_DSN_MYSQL', $_ENV['BASE_DSN_MYSQL']);
 
 
 define('DB_NAME', $_ENV['DB_NAME']);
+define('DB_DRIVER', $_ENV['DB_DRIVER']);
 
 
 define('DSN_POSTGRES', $_ENV['DSN_POSTGRES']);

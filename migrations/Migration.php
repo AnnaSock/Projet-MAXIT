@@ -4,6 +4,7 @@ namespace Migrations;
 
 use Exception;
 use \PDO;
+use \PDOException;
 
 class Migration{
     
@@ -22,6 +23,7 @@ class Migration{
     public function run(){
                 $this->createDatabase();
                 $this->creataTables();
+                echo 'migration réussi';
     }
 
 
@@ -29,6 +31,25 @@ class Migration{
                 if($this->driver=== "mysql"){
                     $this->pdo->exec("CREATE DATABASE IF NOT EXISTS " . DB_NAME);
                     $this->pdo->exec("USE " . DB_NAME);
+                }elseif($this->driver=== "pgsql"){
+                     try {
+                            $pdo= new PDO("pgsql:host=127.0.0.1;port=5432;dbname=postgres", DB_USER_POSTGRES,DB_PASS_POSTGRES,[
+                                    PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION
+                            ]);
+                            $stmt = $pdo->prepare("SELECT 1 FROM pg_database WHERE datname = :dbname");
+                            $stmt->execute([':dbname' => DB_NAME]);
+
+                            if ($stmt->fetch()) {
+                                echo "La base de données '" . DB_NAME . "' existe déjà.\n";
+                            } else {
+                                // Création de la base
+                                $pdo->exec('CREATE DATABASE "' . DB_NAME . '"');
+                                echo "Base de données '" . DB_NAME . "' créée avec succès.\n";
+                            }
+                            
+                     } catch (PDOException $e) {
+                        throw $e;
+                     }   
                 }
     }
 

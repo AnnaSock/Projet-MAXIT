@@ -1,52 +1,48 @@
-CREATE TYPE public.type_transaction_enum AS ENUM
-    ('Depot', 'Retrait', 'Payement');
-
-CREATE TYPE public.type_compte_enum AS ENUM
+CREATE TYPE type_compte AS ENUM
     ('Principal', 'Secondaire');
 
+  CREATE TYPE type_status_transaction AS ENUM
+    ('En_cours', 'terminer', 'Annuler');
+  
+  CREATE TYPE type_transaction AS ENUM
+    ('Depos', 'Retrait', 'Paiement');
 
-CREATE TABLE IF NOT EXISTS public.profil
-(
-    id integer NOT NULL DEFAULT nextval('profil_id_seq'::regclass),
-    nom_profil character varying(50) COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT profil_pkey PRIMARY KEY (id)
-)
+CREATE TABLE role (
+    id SERIAL PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL
+);
 
-CREATE TABLE IF NOT EXISTS public.utilisateurs
-(
-    id integer NOT NULL DEFAULT nextval('utilisateur_id_seq'::regclass),
-    nom character varying(100) COLLATE pg_catalog."default" NOT NULL,
-    prenom character varying(100) COLLATE pg_catalog."default" NOT NULL,
-    adresse text COLLATE pg_catalog."default",
-    numero integer,
-    "motDePasse" text COLLATE pg_catalog."default",
-    "numeroCni" integer,
-    "photoRecto" text COLLATE pg_catalog."default",
-    "photoVerso" text COLLATE pg_catalog."default",
-    profil_id integer,
-    CONSTRAINT utilisateur_pkey PRIMARY KEY (id)
-)
-
-
-CREATE TABLE IF NOT EXISTS public.compte
-(
-    id integer NOT NULL DEFAULT nextval('compte_id_seq'::regclass),
-    solde numeric(12,2) DEFAULT 0,
-    numero character varying(50) COLLATE pg_catalog."default" NOT NULL,
-    date date,
-    "typeCompte" type_compte_enum,
-    utilisateur_id integer,
-    CONSTRAINT compte_pkey PRIMARY KEY (id),
-    CONSTRAINT compte_numero_key UNIQUE (numero)
-)
+CREATE TABLE "user" (
+    id SERIAL PRIMARY KEY,
+    prenom VARCHAR(100),
+    nom VARCHAR(100),
+    login VARCHAR(100) UNIQUE,
+    password VARCHAR(255),
+    role_id INTEGER REFERENCES role(id),
+    adresse VARCHAR(255),
+    nin VARCHAR(50),
+    photorecto VARCHAR(255),
+    photoverso VARCHAR(255)
+);
 
 
-CREATE TABLE IF NOT EXISTS public.transaction
-(
-    id integer NOT NULL DEFAULT nextval('transaction_id_seq'::regclass),
-    montant numeric(12,2) NOT NULL,
-    date timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    compte_id integer,
-    "typeTransaction" type_transaction_enum,
-    CONSTRAINT transaction_pkey PRIMARY KEY (id)
-)
+
+CREATE TABLE compte (
+    id SERIAL PRIMARY KEY,
+    numeros VARCHAR(100) UNIQUE,
+    typecompte type_compte,
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    solde NUMERIC(15,2) DEFAULT 0,
+    user_id INTEGER REFERENCES "user"(id)
+);
+
+
+
+CREATE TABLE transaction (
+    id SERIAL PRIMARY KEY,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    compte_id INTEGER REFERENCES compte(id),
+    montant NUMERIC(15,2) NOT NULL,
+    typetransaction type_transaction,
+    status type_status_transaction
+);
