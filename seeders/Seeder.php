@@ -1,5 +1,8 @@
 <?php
-
+namespace Seeders;
+use Exception;
+use \PDO;
+use \PDOException;
 class Seeder
 {
     private PDO $pdo;
