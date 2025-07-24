@@ -1,7 +1,7 @@
 <?php
-namespace Src\Entity;
-use App\Core\Abstracts\AbstractEntity;
-use Src\Entity\Profil;
+namespace Aks\Src\Entity;
+use Aks\App\Core\Abstracts\AbstractEntity;
+use Aks\Src\Entity\Profil;
 
 
 class Utilisateur extends AbstractEntity{

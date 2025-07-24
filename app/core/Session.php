@@ -1,5 +1,5 @@
 <?php
-namespace App\Core;
+namespace Aks\App\Core;
 
 class Session{
     private static ?Session $session = null; 

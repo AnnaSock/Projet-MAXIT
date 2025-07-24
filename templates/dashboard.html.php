@@ -137,43 +137,41 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="border-b border-gray-100 hover:bg-orange-50 transition-colors">
-                                        <td class="py-3 px-4">16/07/2025</td>
-                                        <td class="py-3 px-4">
-                                            <span class="text-green-600">
-                                                <i class="fa-solid fa-arrow-down"></i> Dépôt
-                                            </span>
-                                        </td>
-                                        <td class="py-3 px-4 font-semibold">+15,000 FCFA</td>
-                                        <td class="py-3 px-4">
-                                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Complété</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="border-b border-gray-100 hover:bg-orange-50 transition-colors">
-                                        <td class="py-3 px-4">16/07/2025</td>
-                                        <td class="py-3 px-4">
-                                            <span class="text-red-600">
-                                                <i class="fa-solid fa-arrow-up"></i> Retrait
-                                            </span>
-                                        </td>
-                                        <td class="py-3 px-4 font-semibold">-5,000 FCFA</td>
-                                        <td class="py-3 px-4">
-                                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Complété</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="border-b border-gray-100 hover:bg-orange-50 transition-colors">
-                                        <td class="py-3 px-4">15/07/2025</td>
-                                        <td class="py-3 px-4">
-                                            <span class="text-blue-600">
-                                                <i class="fa-solid fa-arrow-right-arrow-left"></i> Transfert
-                                            </span>
-                                        </td>
-                                        <td class="py-3 px-4 font-semibold">-8,500 FCFA</td>
-                                        <td class="py-3 px-4">
-                                            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">En cours</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                <?php foreach ($transaction as $t): ?>
+                    <tr class="border-b border-gray-100 hover:bg-orange-50 transition-colors">
+                        <td class="py-3 px-4">
+                            <?= date('d/m/Y', strtotime($t['date'])) ?>
+                        </td>
+                        <td class="py-3 px-4">
+                            <?php
+                                $type = $t['typeTransaction'];
+                                $typeText = ucfirst(strtolower($type));
+                                $color = match($type) {
+                                    'Depot'     => 'text-green-600',
+                                    'Retrait'   => 'text-red-600',
+                                    'Payement'  => 'text-blue-600',
+                                    default     => 'text-gray-600'
+                                };
+                                $icon = match($type) {
+                                    'Depot'     => 'fa-arrow-down',
+                                    'Retrait'   => 'fa-arrow-up',
+                                    'Payement'  => 'fa-money-bill-wave',
+                                    default     => 'fa-circle-question'
+                                };
+                            ?>
+                            <span class="<?= $color ?>">
+                                <i class="fa-solid <?= $icon ?>"></i> <?= $typeText ?>
+                            </span>
+                        </td>
+                        <td class="py-3 px-4 font-semibold">
+                            <?= ($type === 'Depot' ? '+' : '-') . number_format($t['montant'], 0, ',', ' ') ?> FCFA
+                        </td>
+                        <td class="py-3 px-4">
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Complété</span>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
                             </table>
                         </div>
                     </div>

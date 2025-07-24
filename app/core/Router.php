@@ -1,7 +1,7 @@
 <?php
-namespace App\Core;
+namespace Aks\App\Core;
 
-use function App\Config\dd;
+use function Aks\App\Config\dd;
 
 class Router{
         public static function resolve(){
@@ -39,7 +39,9 @@ class Router{
         } //fonction resolve
     }// class router
 
-
+// test.http
+// c'est quoi le cloud
+// upload
 
 
 

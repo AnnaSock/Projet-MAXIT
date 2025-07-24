@@ -1,11 +1,11 @@
 <?php
-namespace Src\Controller;
+namespace Aks\Src\Controller;
 
-use App\Core\Abstracts\AbstractController;
-use App\Core\App;
+use Aks\App\Core\Abstracts\AbstractController;
+use Aks\App\Core\App;
 use App\Core\Session;
-use App\Core\Validator;
-use Src\Service\SecurityService;
+use Aks\App\Core\Validator;
+use Aks\Src\Service\SecurityService;
 
 use function App\Config\dd;
 

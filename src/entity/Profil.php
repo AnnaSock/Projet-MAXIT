@@ -1,7 +1,7 @@
 <?php
-namespace Src\Entity;
+namespace Aks\Src\Entity;
 
-use App\Core\Abstracts\AbstractEntity;
+use Aks\App\Core\Abstracts\AbstractEntity;
 class Profil extends AbstractEntity{
         private  int $id;
         private  string $nomProfil;

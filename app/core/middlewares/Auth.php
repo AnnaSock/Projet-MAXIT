@@ -1,7 +1,7 @@
 <?php
-namespace App\Core\Middlewares;
+namespace Aks\App\Core\Middlewares;
 
-use App\Core\Session;
+use Aks\App\Core\Session;
 
 use function App\Config\dd;
 

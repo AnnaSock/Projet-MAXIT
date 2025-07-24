@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Config;
+namespace Aks\App\Config;
 
 function dd($data){
     echo "<pre>";

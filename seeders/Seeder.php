@@ -1,5 +1,5 @@
 <?php
-namespace Seeders;
+namespace Aks\Seeders;
 use Exception;
 use \PDO;
 use \PDOException;

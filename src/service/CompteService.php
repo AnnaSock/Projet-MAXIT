@@ -1,9 +1,9 @@
 <?php
-namespace Src\Service;
+namespace Aks\Src\Service;
 
-use App\Core\App;
-use Src\Entity\Utilisateur;
-use Src\Repository\CompteRepository;
+use Aks\App\Core\App;
+use Aks\Src\Entity\Utilisateur;
+use Aks\Src\Repository\CompteRepository;
 
 class CompteService{
 

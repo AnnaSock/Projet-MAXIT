@@ -1,6 +1,6 @@
 <?php
 
-namespace Migrations;
+namespace Aks\Migrations;
 
 use Exception;
 use \PDO;

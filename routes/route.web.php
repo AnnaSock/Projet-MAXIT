@@ -1,9 +1,9 @@
 <?php
 
-use App\Core\ErrorController;
+use Aks\App\Core\ErrorController;
 use App\Core\Middlewares\Auth;
-use Src\Controller\ClientController;
-use Src\Controller\SecurityController;
+use Aks\Src\Controller\ClientController;
+use Aks\Src\Controller\SecurityController;
 
 
 

@@ -1,11 +1,11 @@
 <?php
-namespace Src\Repository;
+namespace Aks\Src\Repository;
 
-use App\Core\Abstracts\AbstractRepository;
+use Aks\App\Core\Abstracts\AbstractRepository;
 use PDO;
 use PDOException;
-use Src\Entity\Compte;
-use Src\Entity\Utilisateur;
+use Aks\Src\Entity\Compte;
+use Aks\Src\Entity\Utilisateur;
 
 use function App\Config\dd;
 

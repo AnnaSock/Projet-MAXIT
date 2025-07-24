@@ -1,13 +1,15 @@
 core:
-        database: App\Core\Database
-        session: App\Core\Session
+        database: Aks\App\Core\Database
+        session: Aks\App\Core\Session
 
           
 repository:
-        utilisateurRepository: Src\Repository\UtilisateurRepository
-        compteRepository: Src\Repository\CompteRepository
+        utilisateurRepository: Aks\Src\Repository\UtilisateurRepository
+        compteRepository: Aks\Src\Repository\CompteRepository
+        transactionRepository: Aks\Src\Repository\TransactionRepository
 
             
 service:
-        securityService: Src\Service\SecurityService
-        compteService: Src\Service\CompteService     
+        securityService: Aks\Src\Service\SecurityService
+        compteService: Aks\Src\Service\CompteService     
+        transactionService: Aks\Src\Service\TransactionService     

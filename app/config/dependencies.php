@@ -1,10 +1,10 @@
 <?php
 
-use App\Core\Database;
-use App\Core\Session;
-use Src\Repository\CompteRepository;
-use Src\Repository\UtilisateurRepository;
-use Src\Service\SecurityService;
+use Aks\App\Core\Database;
+use Aks\App\Core\Session;
+use Aks\Src\Repository\CompteRepository;
+use Aks\Src\Repository\UtilisateurRepository;
+use Aks\Src\Service\SecurityService;
 
 $dependencies=[
             "core"=>[

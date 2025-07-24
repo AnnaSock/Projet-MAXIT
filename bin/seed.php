@@ -6,7 +6,7 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../app/config/env.php';
-use Seeders\Seeder;
+use Aks\Seeders\Seeder;
 
 if(DB_DRIVER === 'mysql'){
     $pdo = new PDO(BASE_DSN_MYSQL, DB_USER_MYSQL, DB_PASS_MYSQL);

@@ -2,16 +2,16 @@
     "name": "anna-sock/projet-test",
     "autoload": {
         "psr-4": {
-            "Src\\Entity\\": "src/entity/",
-            "Src\\Repository\\": "src/repository/",
-            "Src\\Controller\\": "src/controller/",
-            "Src\\Service\\": "src/service/",
-            "App\\Config\\": "app/config/",
-            "App\\Core\\": "app/core/",
-            "App\\Core\\Abstracts\\": "app/core/abstracts/",
-            "App\\Core\\Middlewares\\": "app/core/middlewares/",
-            "Migrations\\": "migrations/",
-            "Seeders\\": "seeders/"
+            "Aks\\Src\\Entity\\": "src/entity/",
+            "Aks\\Src\\Repository\\": "src/repository/",
+            "Aks\\Src\\Controller\\": "src/controller/",
+            "Aks\\Src\\Service\\": "src/service/",
+            "Aks\\App\\Config\\": "app/config/",
+            "Aks\\App\\Core\\": "app/core/",
+            "Aks\\App\\Core\\Abstracts\\": "app/core/abstracts/",
+            "Aks\\App\\Core\\Middlewares\\": "app/core/middlewares/",
+            "Aks\\Migrations\\": "migrations/",
+            "Aks\\Seeders\\": "seeders/"
 
         },
 

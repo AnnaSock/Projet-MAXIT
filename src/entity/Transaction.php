@@ -1,5 +1,5 @@
 <?php
-namespace Src\Entity;
+namespace Aks\Src\Entity;
 
 class Transaction{
         private int $id;

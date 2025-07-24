@@ -1,5 +1,5 @@
 <?php
-namespace App\Core;
+namespace Aks\App\Core;
 use \PDO;
 
 class Database{

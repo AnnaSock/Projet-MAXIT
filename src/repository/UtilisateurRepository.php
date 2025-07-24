@@ -1,10 +1,10 @@
 <?php
-namespace Src\Repository;
+namespace Aks\Src\Repository;
 
-use App\Core\Abstracts\AbstractRepository;
+use Aks\App\Core\Abstracts\AbstractRepository;
 use \PDO;
 use App\Core\Database;
-use Src\Entity\Utilisateur;
+use Aks\Src\Entity\Utilisateur;
 
 use function App\Config\dd;
 
@@ -42,7 +42,7 @@ class UtilisateurRepository extends AbstractRepository{
 
        public function selectAll(){
      
-    }
+       }
         public function insert($entity){
           
         }

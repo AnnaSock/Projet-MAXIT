@@ -3,7 +3,7 @@
 <?php
 require_once __DIR__ . "/../vendor/autoload.php";
 require_once __DIR__ . "/../app/config/env.php";
-use Migrations\Migration;
+use Aks\Migrations\Migration;
 
 
 if(DB_DRIVER === 'mysql'){

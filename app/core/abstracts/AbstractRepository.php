@@ -1,7 +1,8 @@
 <?php
-namespace App\Core\Abstracts;
+namespace Aks\App\Core\Abstracts;
 
-use App\Core\App;
+use Aks\App\Core\App;
+use Aks\App\Core\Singleton;
 use PDO;
 
 abstract class AbstractRepository{

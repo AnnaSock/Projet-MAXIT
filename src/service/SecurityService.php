@@ -1,9 +1,9 @@
 <?php
-namespace Src\Service;
+namespace Aks\Src\Service;
 
-use App\Core\App;
-use Src\Entity\Utilisateur;
-use Src\Repository\UtilisateurRepository;
+use Aks\App\Core\App;
+use Aks\Src\Entity\Utilisateur;
+use Aks\Src\Repository\UtilisateurRepository;
 
 class SecurityService{
        private static ?SecurityService $instance=null;
@@ -24,7 +24,7 @@ class SecurityService{
     public function seConnecter($numero, $password):?Utilisateur{
 
                $utilisateur= $this->utilisateurRepository->findByNumero($numero);
-            //    password verify
+            // password verify
             // php online , password hash
             // paassword by cripte
                 if($utilisateur &&  $utilisateur->getMotDePasse() === $password ){
