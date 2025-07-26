@@ -1,15 +1,59 @@
-core:
-        database: Aks\App\Core\Database
-        session: Aks\App\Core\Session
+services:
+  database:
+     class: Aks\App\Core\Database
+     singleton: true
 
-          
-repository:
-        utilisateurRepository: Aks\Src\Repository\UtilisateurRepository
-        compteRepository: Aks\Src\Repository\CompteRepository
-        transactionRepository: Aks\Src\Repository\TransactionRepository
+  session:
+     class: Aks\App\Core\Session
+     singleton: true   
 
-            
-service:
-        securityService: Aks\Src\Service\SecurityService
-        compteService: Aks\Src\Service\CompteService     
-        transactionService: Aks\Src\Service\TransactionService     
+  compte_repository:
+     class: Aks\Src\Repository\CompteRepository
+     singleton: true
+
+  transaction_repository:    
+     class: Aks\Src\Repository\TransactionRepository
+     singleton: true
+
+  utilisateur_repository:    
+     class: Aks\Src\Repository\UtilisateurRepository
+     singleton: true  
+
+  compte_service:    
+     class: Aks\Src\Service\CompteService
+     singleton: true 
+     dependencies:
+          - compte_repository 
+
+  transaction_service:    
+     class: Aks\Src\Service\TransactionService
+     singleton: true 
+     dependencies:
+          - transaction_repository 
+
+  security_service:    
+     class: Aks\Src\Service\SecurityService
+     singleton: true 
+     dependencies:
+          - utilisateur_repository 
+
+  client_controller:
+     class: Aks\Src\Controller\ClientController
+     singleton: false
+     dependencies:
+           - compte_service
+           - transaction_service
+
+  security_controller:
+     class: Aks\Src\Controller\SecurityController
+     singleton: false
+     dependencies:
+           - security_service
+
+interfaces:          
+  Aks\Src\Repository\ICompteRepository: compte_repository
+  Aks\Src\Repository\ITransactionRepository: transaction_repository
+  Aks\Src\Repository\IUtilisateurRepository: utilisateur_repository
+  Aks\Src\Service\ICompteService: compte_service
+  Aks\Src\Service\ITransactionService: transaction_service
+  Aks\Src\Service\ISecurityService: security_service

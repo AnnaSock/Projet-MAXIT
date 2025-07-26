@@ -2,6 +2,7 @@
 namespace Aks\Src\Repository;
 
 use Aks\App\Core\Abstracts\AbstractRepository;
+use Aks\App\Core\Database;
 use PDO;
 use PDOException;
 use Aks\Src\Entity\Compte;
@@ -9,35 +10,13 @@ use Aks\Src\Entity\Utilisateur;
 
 use function App\Config\dd;
 
-class CompteRepository extends AbstractRepository{
+class CompteRepository extends AbstractRepository implements ICompteRepository{
 
-     
-    private static ?CompteRepository $instance=null;
-
-    private function __construct(){
-         parent::__construct();
+    public function __construct()
+    {
+          parent::__construct();
          $this->table='compte';
     }
-
-    public static function getInstance(){
-         if(self::$instance === null){
-                self::$instance= new self();
-         }
-         return self::$instance;
-    }
-
-    public function selectAll(){
-
-    }
-        public function insert($entity){
-
-        }
-        public function update($entity){
-
-        }
-        public function delete(){
-
-        }
 
     public function FindByUser(Utilisateur $utilisateur){
                     $query= "SELECT * FROM " . $this->table. " WHERE utilisateur_id = :utilisateur_id";

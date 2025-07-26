@@ -1,25 +1,16 @@
 <?php
 namespace Aks\Src\Service;
 
-use Aks\App\Core\App;
 use Aks\Src\Entity\Utilisateur;
-use Aks\Src\Repository\UtilisateurRepository;
+use Aks\Src\Repository\IUtilisateurRepository;
 
-class SecurityService{
-       private static ?SecurityService $instance=null;
+class SecurityService implements ISecurityService{
 
-       private UtilisateurRepository $utilisateurRepository;
+       private IUtilisateurRepository $utilisateurRepository;
 
-       private function __construct(){
-            $this->utilisateurRepository=App::getDependencies('utilisateurRepository');
+       public function __construct(IUtilisateurRepository $utilisateurRepository){
+            $this->utilisateurRepository=$utilisateurRepository;
        }
-
-       public static function getInstance(): SecurityService|null {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }
 
     public function seConnecter($numero, $password):?Utilisateur{
 

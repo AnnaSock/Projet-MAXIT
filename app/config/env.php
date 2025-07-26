@@ -13,7 +13,7 @@ define('BASE_DSN_MYSQL', $_ENV['BASE_DSN_MYSQL']);
 
 define('DB_NAME', $_ENV['DB_NAME']);
 define('DB_DRIVER', $_ENV['DB_DRIVER']);
-
+define('API_URL', $_ENV['API_URL']);
 
 define('DSN_POSTGRES', $_ENV['DSN_POSTGRES']);
 define('DB_USER_POSTGRES', $_ENV['DB_USER_POSTGRES']);

@@ -5,17 +5,18 @@ use Aks\App\Core\Abstracts\AbstractController;
 use Aks\App\Core\App;
 use App\Core\Session;
 use Aks\App\Core\Validator;
+use Aks\Src\Service\ISecurityService;
 use Aks\Src\Service\SecurityService;
 
 use function App\Config\dd;
 
 class SecurityController extends AbstractController{
 
-        private SecurityService $securityService;
+        private ISecurityService $securityService;
 
-        public function __construct(){
+        public function __construct(ISecurityService $securityService){
             parent::__construct();
-            $this->securityService=App::getDependencies("securityService");
+            $this->securityService=$securityService;
         }
         public function index(){
             $this->renderHtml('connexion');
@@ -70,15 +71,7 @@ class SecurityController extends AbstractController{
         }
 
        
-        public function show(){
-            
-        }
-        public function edit(){
-            
-        }
-        public function destroy(){
-            
-        }
+       
         public function store(){
 
             $this->renderHtml('succes');

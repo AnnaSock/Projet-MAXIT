@@ -3,27 +3,21 @@ namespace Aks\Src\Repository;
 
 use Aks\App\Core\Abstracts\AbstractRepository;
 use \PDO;
-use App\Core\Database;
 use Aks\Src\Entity\Utilisateur;
+use Aks\App\Core\Database;
 
-use function App\Config\dd;
+class UtilisateurRepository extends AbstractRepository implements IUtilisateurRepository{
 
-class UtilisateurRepository extends AbstractRepository{
-
-        private static ?UtilisateurRepository $instance=null;
+        // private static ?UtilisateurRepository $instance=null;
 
 
-        private function __construct(){
-            parent::__construct();
+        public function __construct()
+        {
+           parent::__construct();
         }
 
         
-       public static function getInstance() {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-        return self::$instance;
-      }
+      
 
       public function findByNumero($numero):?Utilisateur{
         $query= "SELECT * FROM utilisateurs WHERE numero = :numero";
@@ -40,17 +34,5 @@ class UtilisateurRepository extends AbstractRepository{
            return null;
       }
 
-       public function selectAll(){
-     
-       }
-        public function insert($entity){
-          
-        }
-        public function update($entity){
-          
-        }
-        public function delete(){
-          
-        }
-
+       
 }

@@ -1,231 +1,228 @@
-<div class="max-w-3xl w-full mx-auto mt-4 bg-white rounded-2xl shadow-2xl p-8 relative">
-        <!-- Orange decorative elements -->
-        <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
-            <svg viewBox="0 0 200 200" class="w-full h-full">
-                <circle cx="150" cy="50" r="40" fill="#FC7700"/>
-                <circle cx="170" cy="70" r="30" fill="#FF8C00"/>
-            </svg>
-        </div>
-        <div class="absolute bottom-0 left-0 w-24 h-24 opacity-10">
-            <svg viewBox="0 0 100 100" class="w-full h-full">
-                <rect x="10" y="10" width="30" height="30" fill="#FC7700" transform="rotate(45 25 25)"/>
-                <rect x="40" y="40" width="20" height="20" fill="#FF8C00" transform="rotate(45 50 50)"/>
-            </svg>
-        </div>
+<div class="max-w-3xl w-full mx-auto mt-[3vh] bg-white rounded-2xl shadow-2xl p-8 relative">
+    <!-- Orange decorative elements -->
+    <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
+        <svg viewBox="0 0 100 100" class="w-full h-full">
+            <rect x="10" y="10" width="30" height="30" fill="#FC7700" transform="rotate(45 25 25)"/>
+            <rect x="40" y="40" width="20" height="20" fill="#FF8C00" transform="rotate(45 50 50)"/>
+        </svg>
+    </div>
+    <div class="absolute bottom-0 left-0 w-24 h-24 opacity-10">
+        <svg viewBox="0 0 100 100" class="w-full h-full">
+            <rect x="10" y="10" width="30" height="30" fill="#FC7700" transform="rotate(45 25 25)"/>
+            <rect x="40" y="40" width="20" height="20" fill="#FF8C00" transform="rotate(45 50 50)"/>
+        </svg>
+    </div>
 
-        <!-- Header -->
-        <div class="text-center">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Créer un compte</h1>
-            <p class="text-base font-medium" style="color: #FC7700;">Saisissez les informations suivantes</p>
-        </div>
+    <!-- Header -->
+    <div class="text-center">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8">Créer un compte</h1>
+    </div>
 
-        <!-- Form -->
-        <form action="/account/save" class="space-y-6">
-            <!-- CNI Section (Priority) -->
-            <div class="cni-section rounded-lg p-6 mb-8">
-                <div class="flex items-center mb-4">
-                    <svg class="w-6 h-6 text-[#FC7700] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    <h3 class="text-lg font-bold text-gray-800">Étape 1 : Vérification CNI</h3>
-                    <span class="ml-2 text-sm text-red-600 font-medium">(Obligatoire)</span>
-                </div>
-                <div>
-                    <label class="block text-gray-700 text-sm font-semibold mb-2">Carte d'identité Nationale *</label>
-                    <input type="text" id="cni-input" placeholder="Entrez votre numéro CNI" required
-                           class="input-field w-full px-4 py-3 bg-gray-50 text-gray-900 rounded-lg border border-gray-300 placeholder-gray-400 focus:outline-none focus:bg-white transition-all duration-200 shadow-sm hover:shadow-md">
-                    <p class="text-sm text-gray-500 mt-2">
-                        <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        Veuillez saisir votre numéro CNI pour continuer l'inscription
-                    </p>
-                    <div id="cni-status" class="mt-3 hidden">
-                        <div class="flex items-center text-green-600">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                            </svg>
-                            <span class="font-medium">CNI vérifiée avec succès !</span>
-                        </div>
-                    </div>
-                </div>
+    <!-- Form -->
+    <form action="/account/save" class="space-y-6" id="registerForm">
+        <!-- CNI Section (Priority) -->
+        <div class="cni-section relative rounded-lg p-6 mb-8">
+    <div>
+        <label class="block text-gray-700 text-sm font-semibold mb-2">Carte d'identité Nationale *</label>
+
+        <div class="relative">
+
+            <input 
+            id="inputCni"
+            name="inputCni"
+            type="text"
+            placeholder="Entrez votre numéro CNI"
+            class=" w-full pr-12 px-4 py-3 bg-gray-50 text-gray-900 rounded-lg border border-gray-300 placeholder-gray-400 focus:outline-none focus:bg-white transition-all duration-200 shadow-sm hover:shadow-md"
+            placeholder=""
+            pattern="^[1-2][0-9]{12}$"
+            title="CNI sénégalais "
+            >
+
+            <!-- Spinner visible pendant le chargement -->
+            <div role="status" id="spinner" class="absolute right-3 top-1/2 -translate-y-1/2 hidden">
+                <svg aria-hidden="true" class="w-6 h-6 text-gray-200 animate-spin fill-[#FC7700]" viewBox="0 0 100 101" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.59c0 27.61-22.39 50-50 50s-50-22.39-50-50 22.39-50 50-50 50 22.39 50 50Zm-90.92 0c0 21.6 17.32 38.92 38.92 38.92S87.92 72.19 87.92 50.59 70.6 11.67 49 11.67 9.08 28.99 9.08 50.59Z" fill="currentColor"/>
+                    <path d="M93.97 39.04c2.43-.64 3.9-3.13 3.05-5.49a45.003 45.003 0 0 0-8.15-13.21C83.85 15.12 78.88 10.72 73.21 7.41 67.54 4.1 61.28 1.94 54.77 1.05c-5-.68-10.07-.6-15.04.23-2.47.41-3.91 2.92-3.28 5.34.63 2.45 3.11 3.88 5.59 3.52 3.8-.56 7.67-.58 11.49-.05 5.32.73 10.45 2.5 15.09 5.22 4.64 2.72 8.72 6.31 11.99 10.63 2.33 3.07 4.21 6.46 5.61 10.03.91 2.34 3.37 3.79 5.8 3.15Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Chargement...</span>
             </div>
+        </div>
 
-            <!-- Rest of the form (disabled by default) -->
-            <div id="form-sections" class="form-section space-y-6">
-                <!-- Personal Information Header -->
-                <div class="border-l-4 border-[#FC7700] pl-4 mb-6">
-                    <h3 class="text-lg font-bold text-gray-800">Étape 2 : Informations personnelles</h3>
-                </div>
+        <p class="text-sm text-gray-500 mt-2">
+            <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Veuillez saisir votre numéro CNI pour continuer l'inscription
+        </p>
 
-                <!-- First row -->
+
+        <!-- Gestion Erreur -->
+        <div>
+            <p class="hidden text-red-500 text-xs mt-1" id="error-message">Numero de carte Nationale invalide</p>
+            <p class="hidden text-green-600 text-xs mt-1" id="success-message">Numero de carte National verifié avec succés</p>
+            <p class="text-xs mt-1" id="statut-message"></p>
+            
+        </div>
+
+
+    </div>
+</div>
+
+
+        <!-- Rest of the form (disabled by default) -->
+        <div id="form-sections" class="space-y-6">
+       
+            <!-- First row -->
+            <!-- Première ligne -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-gray-700 text-sm font-semibold mb-2">Nom *</label>
-                        <input type="text" placeholder="Entrer votre nom" required
-                               class="input-field w-full px-4 py-3 bg-gray-50 text-gray-900 rounded-lg border border-gray-300 placeholder-gray-400 focus:outline-none focus:bg-white transition-all duration-200 shadow-sm hover:shadow-md">
+
+                                <input 
+                                readonly
+                                id="nom"
+                                name="nom"
+                                type="text"
+                                class="input-field w-full px-4 py-3 bg-gray-100 text-gray-900 rounded-lg border border-gray-300 placeholder-gray-400 focus:outline-none transition-all duration-200 shadow-sm"
+                                placeholder="Nom"
+                                >
+
                     </div>
                     <div>
                         <label class="block text-gray-700 text-sm font-semibold mb-2">Prénom *</label>
-                        <input type="text" placeholder="Entrer votre prénom" required
-                               class="input-field w-full px-4 py-3 bg-gray-50 text-gray-900 rounded-lg border border-gray-300 placeholder-gray-400 focus:outline-none focus:bg-white transition-all duration-200 shadow-sm hover:shadow-md">
+
+                               <input 
+                               type="text" 
+                               id="prenom"
+                               name="prenom" 
+                               readonly
+                               value=""
+                               class="input-field w-full px-4 py-3 bg-gray-100 text-gray-900 rounded-lg border border-gray-300 placeholder-gray-400 focus:outline-none transition-all duration-200 shadow-sm"
+                               placeholder="Prénom"
+                               >
+
                     </div>
                 </div>
+       <!-- Troisième ligne -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                    <div>
+                        <label class="block text-gray-700 text-sm font-semibold mb-2">Date de Naissance *</label>
 
-                <!-- Second row -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input 
+                              readonly
+                                id="date_naissance"
+                                name="date_naissance"
+                                type="text"
+                        class="input-field w-full px-4 py-3 bg-gray-100 text-gray-900 rounded-lg border border-gray-300 placeholder-gray-400 focus:outline-none transition-all duration-200 shadow-sm"
+                        placeholder="Date de naissance"
+                        >
+
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 text-sm font-semibold mb-2">Lieu de Naissance *</label>
+
+                        <input 
+                        id="lieu_naissance"
+                        name="lieu_naissance"
+                        type="text"
+                        class="input-field w-full px-4 py-3 bg-gray-100 text-gray-900 rounded-lg border border-gray-300 placeholder-gray-400 focus:outline-none transition-all duration-200 shadow-sm"
+                        placeholder="Lieu de naissance"
+                        >
+
+                    </div>
+                </div>
+                <!-- Deuxième ligne -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                     <div>
                         <label class="block text-gray-700 text-sm font-semibold mb-2">Numéro de téléphone *</label>
-                        <input type="tel" placeholder="Numéro de téléphone" required
-                               class="input-field w-full px-4 py-3 bg-gray-50 text-gray-900 rounded-lg border border-gray-300 placeholder-gray-400 focus:outline-none focus:bg-white transition-all duration-200 shadow-sm hover:shadow-md">
+
+                               <input 
+                                id="phone"
+                                name="phone"
+                                type="tel" 
+                               class="w-full px-4 py-3 bg-gray-100 text-gray-900 rounded-lg border border-gray-300 placeholder-gray-400 focus:outline-none transition-all duration-200 shadow-sm"
+                               placeholder=""
+                               pattern="^(77|78|76|75|70)[0-9]{7}$"
+                               title="Numéro portable sénégalais (ex: 771234567)"
+                               >
+
                     </div>
                     <div>
                         <label class="block text-gray-700 text-sm font-semibold mb-2">Mot de passe *</label>
-                        <input type="password" placeholder="Mot de passe" required
-                               class="input-field w-full px-4 py-3 bg-gray-50 text-gray-900 rounded-lg border border-gray-300 placeholder-gray-400 focus:outline-none focus:bg-white transition-all duration-200 shadow-sm hover:shadow-md">
+
+                        <input 
+                        id="password"
+                        name="password"
+                        type="password"
+                        minlength="8"
+                        readonly
+                        class="w-full px-4 py-3 bg-gray-100 text-gray-900 rounded-lg border border-gray-300 placeholder-gray-400 focus:outline-none transition-all duration-200 shadow-sm"
+                        >
+
                     </div>
                 </div>
 
-                <!-- Photo CNI section -->
-                <div>
-                    <div class="border-l-4 border-[#FC7700] pl-4 mb-4">
-                        <h3 class="text-lg font-bold text-gray-800">Étape 3 : Photo CNI</h3>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                        <!-- RECTO -->
-                        <div class="upload-area rounded-lg p-6 text-center transition-all duration-300 cursor-pointer group border border-gray-500">
-                            <div class="mb-3">
-                                <div class="border border-[#FC7700] w-16 h-16 orange-gradient rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                                    <svg class="w-8 h-8 text-[#FC7700]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <p class="text-gray-800 font-semibold text-base mb-1">RECTO</p>
-                            <p class="text-gray-500 text-sm">Cliquez pour télécharger</p>
-                        </div>
-
-                        <!-- VERSO -->
-                        <div class="upload-area rounded-lg p-6 text-center transition-all duration-300 cursor-pointer group border border-gray-500">
-                            <div class="mb-3">
-                                <div class="border border-[#FC7700] w-16 h-16 orange-gradient rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                                    <svg class="w-8 h-8 text-[#FC7700]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <p class="text-gray-800 font-semibold text-base mb-1">VERSO</p>
-                            <p class="text-gray-500 text-sm">Cliquez pour télécharger</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Submit button -->
-                <div class="flex justify-center pt-4">
-                    <button type="submit" 
-                            class="border border-gray-500 orange-gradient text-[#FC7700] font-bold py-3 px-12 rounded-lg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-orange-300 shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95">
-                        VALIDER
-                    </button>
-                </div>
-            </div>
-        </form>
-
-        <!-- Login link -->
-        <!-- <div class="text-center mt-6">
-            <p class="text-gray-600 text-sm">
-                Vous avez déjà un compte ? 
-                <a href="/login" class="font-semibold hover:underline" style="color: #FC7700;">Se connecter</a>
-            </p>
-        </div> -->
-    </div>
-
-    <script>
-        // CNI validation logic
-        const cniInput = document.getElementById('cni-input');
-        const cniStatus = document.getElementById('cni-status');
-        const formSections = document.getElementById('form-sections');
-
-        cniInput.addEventListener('input', function() {
-            const cniValue = this.value.trim();
-            
-            // Simulate CNI validation (replace with your actual validation logic)
-            if (cniValue.length >= 8) {
-                // Simulate API call delay
-                setTimeout(() => {
-                    validateCNI(cniValue);
-                }, 500);
-            } else {
-                resetCNIValidation();
-            }
-        });
-
-        function validateCNI(cniNumber) {
-            // Replace this with your actual CNI validation API call
-            // For demo, we'll assume any CNI with 8+ characters is valid
-            const isValid = cniNumber.length >= 8;
-            
-            if (isValid) {
-                cniStatus.classList.remove('hidden');
-                cniInput.classList.add('border-green-500');
-                cniInput.classList.remove('border-red-500');
-                formSections.classList.add('enabled');
                 
-                // Smooth scroll to next section
-                setTimeout(() => {
-                    formSections.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 300);
-            } else {
-                resetCNIValidation();
-                cniInput.classList.add('border-red-500');
-                cniInput.classList.remove('border-green-500');
-            }
-        }
+            <!-- Photo CNI section (hidden by default) -->
+           <!-- <div id="photo-section" class="photo-section"> -->
+   
+    
+    <div class="border border-[#FC7700] w-56 h-32 orange-gradient rounded-md flex items-center justify-center mx-auto mb-3 shadow-md overflow-hidden">
+                    <img id="imageCni" alt="Photo CNI" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 text-center">
+    </div>
+<!-- </div> -->
+ <div class="flex justify-center pt-4">
+                <button type="submit" 
+                        class="border border-gray-500 orange-gradient text-[#FC7700] font-bold py-3 px-12 rounded-lg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-orange-300 shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95">
+                    VALIDER
+                </button>
+ </div>
+</div>
 
-        function resetCNIValidation() {
-            cniStatus.classList.add('hidden');
-            cniInput.classList.remove('border-green-500', 'border-red-500');
-            formSections.classList.remove('enabled');
-        }
 
-        // Add click functionality to upload areas
-        document.querySelectorAll('.upload-area').forEach(uploadArea => {
-            uploadArea.addEventListener('click', function() {
-                const input = document.createElement('input');
-                input.type = 'file';
-                input.accept = 'image/*';
-                input.onchange = function(e) {
-                    const file = e.target.files[0];
-                    if (file) {
-                        console.log('File selected:', file.name);
-                        const fileName = uploadArea.querySelector('p:last-child');
-                        if (fileName) {
-                            fileName.textContent = file.name;
-                            fileName.style.color = '#FC7700';
-                            fileName.style.fontWeight = '600';
-                        }
-                        const icon = uploadArea.querySelector('svg');
-                        if (icon) {
-                            icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>';
-                        }
-                    }
-                };
-                input.click();
-            });
-        });
+            <!-- Submit button -->
+           
+        </div>
+    </form>
+</div>
 
-        // Form submission with validation
-        document.querySelector('form').addEventListener('submit', function(e) {
-            const cniValue = cniInput.value.trim();
-            if (cniValue.length < 8) {
-                e.preventDefault();
-                alert('Veuillez d\'abord valider votre numéro CNI');
-                cniInput.focus();
-                return false;
-            }
-            
-            // Add your form submission logic here
-            console.log('Form submitted with CNI:', cniValue);
-        });
-    </script>
-</body>
-</html>
+<style>
+.orange-gradient {
+    background: linear-gradient(135deg, rgba(252, 119, 0, 0.1) 0%, rgba(255, 140, 0, 0.1) 100%);
+}
+
+.input-field:focus {
+    border-color: #FC7700;
+    box-shadow: 0 0 0 3px rgba(252, 119, 0, 0.1);
+}
+
+.cni-section {
+    background: linear-gradient(135deg, rgba(252, 119, 0, 0.05) 0%, rgba(255, 140, 0, 0.05) 100%);
+    border: 1px solid rgba(252, 119, 0, 0.2);
+}
+
+.input-field {
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.form-section.enabled {
+    pointer-events: all;
+}
+
+/* .photo-section {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+} */
+
+.photo-section.show {
+    opacity: 1;
+    max-height: 500px;
+    margin-top: 20px;
+}
+</style>
+
+<script type="module" src="/assets/js/main.js">$</script>

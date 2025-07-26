@@ -1,18 +1,16 @@
 <?php
 namespace Aks\Src\Repository;
 use Aks\App\Core\Abstracts\AbstractRepository;
+use Aks\App\Core\Database;
 use PDO;
 
-class TransactionRepository extends AbstractRepository{
+class TransactionRepository extends AbstractRepository implements ITransactionRepository{
 
-    private static ?TransactionRepository $instance=null;
 
-    public static function getInstance(){
-         if(self::$instance === null){
-                self::$instance= new self();
-         }
-         return self::$instance;
-    }
+   public function __construct()
+   {
+        parent::__construct();
+   }
     
     public function findByCompte($compte_id)
     {
@@ -30,17 +28,6 @@ class TransactionRepository extends AbstractRepository{
     }
 
 
-   public function selectAll(){
-
-   }
-       public function insert($entity){
-
-       }
-       public function update($entity){
-
-       }
-       public function delete(){
-
-       }
+   
 
 }

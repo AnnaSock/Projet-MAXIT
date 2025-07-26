@@ -1,15 +1,16 @@
 <?php
 namespace Aks\App\Core;
 
-class Singleton {
-    protected static ?self $instance = null;
-
-    protected function __construct() {}
-
-    public static function getInstance(): static {
-        if (static::$instance === null) {
-            static::$instance = new static();
-        }
-        return static::$instance;
+class Singleton{
+  protected static ?Singleton $instance = null;
+  private function __construct()
+  {
+    
+  }
+  private static function getInstance(){
+    if(self::$instance === null){
+      self::$instance = new self();
     }
+    return self::$instance;
+  }
 }

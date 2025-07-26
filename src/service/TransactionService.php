@@ -2,24 +2,15 @@
 
 namespace Aks\Src\Service;
 
-use Aks\App\Core\App;
-use Aks\Src\Repository\TransactionRepository;
+use Aks\Src\Repository\ITransactionRepository;
 
-class TransactionService {
+class TransactionService implements ITransactionService{
 
-        private static  ?TransactionService $instance=null;
-        private TransactionRepository $transactionRepository;
+        private  ITransactionRepository $transactionRepository;
 
 
-        private function __construct(){
-              $this->transactionRepository=App::getDependencies('transactionRepository');
-        }
-
-        public static function getInstance(){
-         if(self::$instance === null){
-                self::$instance= new self();
-         }
-         return self::$instance;
+        public function __construct(ITransactionRepository $transactionRepository){
+              $this->transactionRepository=$transactionRepository;
         }
 
     public function getTransactionByCompte($compte_id){
