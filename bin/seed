@@ -1,12 +1,11 @@
-#!/usr/bin/env php  
+#!/usr/bin/env php
 
 <?php
-require_once __DIR__ . "/../vendor/autoload.php";
-require_once __DIR__ . "/../app/config/env.php";
 
-use Aks\Migrations\Migration;
-// use \PDO;
-// use \PDOException;
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../app/config/env.php';
+
+use Aks\Seeders\Seeder;
 
 try {
     if (DB_DRIVER === 'mysql') {
@@ -14,19 +13,18 @@ try {
     } elseif (DB_DRIVER === 'pgsql') {
         $pdo = new PDO(BASE_DSN_RAILWAY, DB_USER_RAILWAY, DB_PASS_RAILWAY);
     } else {
-        throw new Exception("Driver DB inconnu : " . DB_DRIVER);
+        throw new Exception("Driver DB non pris en charge : " . DB_DRIVER);
     }
 
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     echo "✅ Connexion réussie à la base de données.\n";
 
     try {
-        $migration = new Migration($pdo);
-        $migration->run();
-        echo "✅ Migration terminée avec succès.\n";
+        $seeder = new Seeder($pdo);
+        $seeder->run();
+        echo "✅ Données insérées avec succès.\n";
     } catch (Exception $e) {
-        echo "❌ Erreur lors de l'exécution des migrations : " . $e->getMessage() . "\n";
+        echo "❌ Erreur lors du seeding : " . $e->getMessage() . "\n";
         exit(1);
     }
 
