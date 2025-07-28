@@ -11,21 +11,19 @@ class Utilisateur extends AbstractEntity{
         private string $adresse;
         private string $motDePasse;
         private int $numeroCni;
-        private string $photoRecto;
-        private string $photoVerso;
+        private string $copieCni;
         private string $numero;
         private Profil $profil;
         private array $comptes=[];
 
-        public function __construct($id=0, $nom='', $prenom='',$adresse='',$motDePasse='',$numeroCni=0,$photoRecto='',$photoVerso='',$numero=''){
+        public function __construct($id=0, $nom='', $prenom='',$adresse='',$motDePasse='',$numeroCni=0,$copieCni='',$numero=''){
                 $this->id=$id;
                 $this->nom=$nom;
                 $this->prenom=$prenom;
                 $this->adresse=$adresse;
                 $this->motDePasse=$motDePasse;
+                $this->copieCni=$copieCni;
                 $this->numeroCni=$numeroCni;
-                $this->photoRecto=$photoRecto;
-                $this->photoVerso=$photoVerso;
                 $this->numero=$numero;
                 $this->profil= new Profil();
         }
@@ -39,8 +37,7 @@ class Utilisateur extends AbstractEntity{
                      "adresse"=> $this->getAdresse(),
                      "motDePasse"=> $this->getMotDePasse(),
                      "numeroCni"=> $this->getNumeroCni(),
-                     "photoRecto"=> $this->getPhotoRecto(),
-                     "photoVerso"=> $this->getPhotoVerso(),
+                     "copieCni"=> $this->getcopieCni(),
                      "numero"=> $this->getNumero(),
                      "profil"=> $this->getProfil()->toArray(),
                      "comptes"=> array_map( fn($compte):?array=> $compte->toArray(), $this->getComptes())
@@ -54,8 +51,7 @@ class Utilisateur extends AbstractEntity{
                  $utilisateur->setAdresse($data['adresse'] ?? ''); 
                  $utilisateur->setMotDePasse($data['motDePasse'] ?? ''); 
                  $utilisateur->setNumeroCni($data['numeroCni'] ?? 0);
-                 $utilisateur->setPhotoRecto($data['photoRecto'] ?? '');
-                 $utilisateur->setPhotoVerso($data['photoVerso'] ?? ''); 
+                 $utilisateur->setCopieCni($data['copieCni'] ?? ''); 
                  $utilisateur->setNumero($data['numero'] ?? 0);
                  $profil=new Profil();
                  $profil->setId($data['profil_id'] ?? 0);
@@ -184,45 +180,7 @@ class Utilisateur extends AbstractEntity{
                 return $this;
         }
 
-        /**
-         * Get the value of photoRecto
-         */ 
-        public function getPhotoRecto()
-        {
-                return $this->photoRecto;
-        }
-
-        /**
-         * Set the value of photoRecto
-         *
-         * @return  self
-         */ 
-        public function setPhotoRecto($photoRecto)
-        {
-                $this->photoRecto = $photoRecto;
-
-                return $this;
-        }
-
-        /**
-         * Get the value of photoVerso
-         */ 
-        public function getPhotoVerso()
-        {
-                return $this->photoVerso;
-        }
-
-        /**
-         * Set the value of photoVerso
-         *
-         * @return  self
-         */ 
-        public function setPhotoVerso($photoVerso)
-        {
-                $this->photoVerso = $photoVerso;
-
-                return $this;
-        }
+        
 
         /**
          * Get the value of numero
@@ -274,5 +232,25 @@ class Utilisateur extends AbstractEntity{
 
         public function addComptes($compte):array{
             return $this->comptes[]=$compte;
+        }
+
+        /**
+         * Get the value of copieCni
+         */ 
+        public function getCopieCni()
+        {
+                return $this->copieCni;
+        }
+
+        /**
+         * Set the value of copieCni
+         *
+         * @return  self
+         */ 
+        public function setCopieCni($copieCni)
+        {
+                $this->copieCni = $copieCni;
+
+                return $this;
         }
 }
