@@ -1,9 +1,11 @@
 <?php
 
 use Dotenv\Dotenv;
+if(file_exists(__DIR__. '/../../.env')){
 
-$dotenv= Dotenv::createImmutable(dirname(__DIR__,2));
-$dotenv->load();
+    $dotenv= Dotenv::createImmutable((__DIR__. '/../../'));
+    $dotenv->load();
+}
 
 define('DSN_MYSQL', $_ENV['DSN_MYSQL']);
 define('DB_USER_MYSQL', $_ENV['DB_USER_MYSQL']);
