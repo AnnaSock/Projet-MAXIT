@@ -28,6 +28,7 @@ export function sendRequest(){
                                 lieuNaissance.value=res.data.lieu_naissance
                                 const image=res.data.copie_cni
                                 imageCni.setAttribute('src', image)
+                                 
                     }else{
                         showMessage('error', 'Le numero est invalide')
                         spinner.classList.add('hidden')

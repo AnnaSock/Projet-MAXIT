@@ -171,6 +171,7 @@
     <div class="border border-[#FC7700] w-56 h-32 orange-gradient rounded-md flex items-center justify-center mx-auto mb-3 shadow-md overflow-hidden">
                     <img id="imageCni" alt="Photo CNI" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 text-center">
     </div>
+    <input type="hidden" name="ph">
 <!-- </div> -->
  <div class="flex justify-center pt-4">
                 <button type="submit" 
